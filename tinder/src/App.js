@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import loginPage from "./pages/loginpage";
+import LoginPage from "./front_pages/LoginPage.js";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <loginPage />
+          <LoginPage />
         </a>
       </header>
     </div>
