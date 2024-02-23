@@ -1,1 +1,0 @@
-# buy or sell stocks
