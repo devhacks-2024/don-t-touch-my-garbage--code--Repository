@@ -13,13 +13,18 @@ function LoginPage() {
   const userContext = useContext(UserContextConsumer);
   const loginUser = (userName, password) => {
     const user = data.users.find((element) => element.id === userName);
+    console.log(user);
     if (user != null) {
       if (user.password === password) {
+        console.log("Login successful");
         userContext.setUser(user);
         navigate("/home");
+      } else {
+        console.log("password wrong");
       }
+    } else {
+      console.log("User not found");
     }
-    console.log("User not found or password wrong");
   };
   return (
     <div>
