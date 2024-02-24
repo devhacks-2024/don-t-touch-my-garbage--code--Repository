@@ -22,7 +22,7 @@ function Profile() {
           <strong>Bio:</strong> {userContext.user.bio}
         </p>
         <p>
-          <strong>Score:</strong> {userContext.user.bio}
+          <strong>Score:</strong> {userContext.user.currentScore}
         </p>
         <p>
           <strong>Correct Answers:</strong>
