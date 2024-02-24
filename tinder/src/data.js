@@ -7,7 +7,7 @@ class PeopleObj {
             this.age =30;
             this.gender = 'Non-binary'; 
             this.bio = 'Just exploring the world of software engineering.'; 
-            this.password = "guest";
+            this.password = 'guest';
         }
         else
         {
@@ -58,7 +58,8 @@ const users = [
     new PeopleObj(9, 'path/to/image.jpg', 33, 'Non-Binary', 'Software engineer with a passion for coding challenges.', "password"),
     new PeopleObj(10, 'path/to/image.jpg', 34, 'Male', 'Software engineer with a passion for coding challenges.', "password"),
     new PeopleObj(11, 'path/to/image.jpg', 35, 'Male', 'Software engineer with a passion for coding challenges.', "password"),
-    new PeopleObj(12, 'path/to/image.jpg', 36, 'Female', 'Software engineer with a passion for coding challenges.', "password")
+    new PeopleObj(12, 'path/to/image.jpg', 36, 'Female', 'Software engineer with a passion for coding challenges.', "password"),
+    new PeopleObj(),
 ];
 
 
@@ -139,14 +140,14 @@ const questions = [
         'push'
     ),
     
-    QuestionsObj(
+    new QuestionsObj(
         9,
         'Fill in the blank: The _______ method is used to add one or more elements to the end of an array.',
         'hard',
         'push'
     ),
     
-    QuestionsObj(
+    new QuestionsObj(
         10,
         'Fill in the blank: The _______ method is used to add one or more elements to the end of an array.',
         'hard',
