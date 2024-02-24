@@ -1,0 +1,31 @@
+.profile {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.profile-info p {
+    margin-bottom: 5px;
+}
+
+.profile-info p strong {
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.profile-info ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.profile-info ul li {
+    margin-bottom: 5px;
+}
