@@ -1,7 +1,7 @@
 import "./App.css";
 import LoginPage from "./front_pages/LoginPage.js";
 import HomePage from "./front_pages/HomePage.js";
-
+import UserPage from "./front_pages/UserPage.jsx";
 import { BrowserRouter, Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -16,6 +16,9 @@ function App() {
             <li>
               <Link to="/home">Home</Link>
             </li>
+            <li>
+              <Link to="/userpage">User Page</Link>
+            </li>
           </ul>
         </nav>
 
@@ -23,6 +26,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/userpage" element={<UserPage />} />
         </Routes>
       </div>
     </BrowserRouter>
