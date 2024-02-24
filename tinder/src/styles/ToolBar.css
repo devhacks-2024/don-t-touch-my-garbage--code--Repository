@@ -1,0 +1,12 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #eaecef;
+  padding: 20px;
+  align-items: center;
+}
+
+.text-center {
+  font-family: monospace;
+  color: rgb(0, 0, 0);
+}

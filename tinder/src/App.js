@@ -2,11 +2,13 @@ import "./styles/App.css";
 import LoginPage from "./front_pages/LoginPage.js";
 import HomePage from "./front_pages/HomePage.js";
 import UserPage from "./front_pages/UserPage.jsx";
+import ToolBar from "./front_pages/ToolBar.js";
 import { BrowserRouter, Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="main-div">
+      <ToolBar />
       <BrowserRouter>
         <div>
           <nav>
