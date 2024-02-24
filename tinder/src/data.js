@@ -1,10 +1,10 @@
 class PeopleObj {
     constructor(id, image, age, gender, bio, password) {
-        if(arguments.length ==0 )
+        if(arguments.length ===0 )
         {
             this.id = 'guest';
             this.image ='path/to/default/image.jpg'; // Default image path
-            this.age =30; // Age
+            this.age = 30; // Age
             this.gender = 'Non-binary'; // Gender
             this.bio = 'Just exploring the world of software engineering.'; // Bio
             this.password = "guest";
@@ -46,7 +46,7 @@ class PeopleObj {
     }
 }
 
-const users = new Array();
+const users = [];
 const user1 = new PeopleObj(1, 'path/to/image.jpg', 25, 'Male', 'Software engineer with a passion for coding challenges.', "password");
 const user2 = new PeopleObj(2, 'path/to/image.jpg', 26, 'Male', 'Software engineer with a passion for coding challenges.', "password");
 const user3 = new PeopleObj(3, 'path/to/image.jpg', 27, 'Male', 'Software engineer with a passion for coding challenges.', "password");
@@ -55,7 +55,7 @@ users.push(user1);
 users.push(user2);
 users.push(user3);
 users.push(user4);
-users.push(new PeopleObj);
+users.push(new PeopleObj());
 console.log(users[4]);
 
 class QuestionsObj {
@@ -77,7 +77,7 @@ class QuestionsObj {
     }
 }
 
-const questions = new Array();
+const questions = [];
 const easyQuestion = new QuestionsObj(
     1,
     'What is the output of `console.log(1 + "2" + "2");` in JavaScript?',
@@ -101,4 +101,4 @@ questions.push(hardQuestion);
 console.log(questions[0].checkAnswer('"122"')); 
 console.log(questions[1].checkAnswer('push')); 
 
-export default {PeopleObj, QuestionsObj, users, questions};
+export default {users, questions};

@@ -3,12 +3,28 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import "./LoginPage.css";
+import { useContext } from "react";
+import { UserContextConsumer } from "../userContext";
+import data from "../data";
 
 function LoginPage() {
+  const userContext = useContext(UserContextConsumer);
+  const loginUser = (userName, password) => {
+    const user = data.users.find((element) => element.id === userName);
+    if (user != null)
+    {
+      if(user.password === password)
+      {
+        userContext.setUser(user);
+      }
+    }
+    console.log("User not found or password wrong");
+    
+  }
   return (
     <div>
       <ToolBar />
-      <Inputs />
+      <Inputs login = {(username, password) => loginUser(username, password)} />
     </div>
   );
 }
@@ -25,14 +41,13 @@ function ToolBar() {
   );
 }
 
-function Inputs() {
+
+
+function Inputs(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      password: data.get("password"),
-    });
+    props.login(data.get("username"), data.get("password"));
   };
   return (
     <Box component="form" onSubmit={handleSubmit}>

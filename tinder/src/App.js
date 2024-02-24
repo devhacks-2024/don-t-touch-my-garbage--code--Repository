@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import LoginPage from "./front_pages/LoginPage.js";
 
