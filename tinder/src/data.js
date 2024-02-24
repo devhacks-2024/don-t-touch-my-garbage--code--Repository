@@ -31,6 +31,18 @@ class PeopleObj {
             // Further logic could be added to manage match details.
         }
     }
+
+    constructor() {
+        // Hardcode guest account details
+        this.guestUser = new PeopleObj(
+            'guest', // Unique ID for the guest user
+            'path/to/default/image.jpg', // Default image path
+            30, // Age
+            'Non-binary', // Gender
+            'Just exploring the world of software engineering.', // Bio
+            "guest"
+        );
+    }
 }
 
 const users = new Array();

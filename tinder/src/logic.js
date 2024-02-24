@@ -6,7 +6,8 @@ class AccountHandler {
             'path/to/default/image.jpg', // Default image path
             30, // Age
             'Non-binary', // Gender
-            'Just exploring the world of software engineering.' // Bio
+            'Just exploring the world of software engineering.', // Bio
+            "guest"
         );
     }
 
@@ -16,11 +17,12 @@ class AccountHandler {
     }
 
     // Update guest profile
-    updateProfile({image, age, gender, bio}) {
+    updateProfile({image, age, gender, bio, password}) {
         if (image) this.guestUser.image = image;
         if (age) this.guestUser.age = age;
         if (gender) this.guestUser.gender = gender;
         if (bio) this.guestUser.bio = bio;
+        if (password) this.guestUser.password = password;
 
         console.log('Guest profile updated successfully.');
         return true;
