@@ -5,26 +5,26 @@ import TextField from "@mui/material/TextField";
 import "./LoginPage.css";
 import { useContext } from "react";
 import { UserContextConsumer } from "../userContext";
+import { useNavigate } from "react-router-dom";
 import data from "../data";
 
 function LoginPage() {
+  const navigate = useNavigate();
   const userContext = useContext(UserContextConsumer);
   const loginUser = (userName, password) => {
     const user = data.users.find((element) => element.id === userName);
-    if (user != null)
-    {
-      if(user.password === password)
-      {
+    if (user != null) {
+      if (user.password === password) {
         userContext.setUser(user);
+        navigate("/home");
       }
     }
     console.log("User not found or password wrong");
-    
-  }
+  };
   return (
     <div>
       <ToolBar />
-      <Inputs login = {(username, password) => loginUser(username, password)} />
+      <Inputs login={(username, password) => loginUser(username, password)} />
     </div>
   );
 }
@@ -40,8 +40,6 @@ function ToolBar() {
     </Box>
   );
 }
-
-
 
 function Inputs(props) {
   const handleSubmit = (event) => {
