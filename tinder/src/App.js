@@ -9,7 +9,7 @@ function App() {
     <div className="main-div">
       <BrowserRouter>
         <div>
-          {/* <nav>
+          <nav>
             <ul>
               <li>
                 <Link to="/">Login</Link>
@@ -23,7 +23,7 @@ function App() {
             </ul>
           </nav>
 
-          <hr /> */}
+          <hr />
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/home" element={<HomePage />} />
