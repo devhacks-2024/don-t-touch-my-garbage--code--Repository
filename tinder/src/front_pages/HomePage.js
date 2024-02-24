@@ -2,6 +2,7 @@ import { AppBar, Box, Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import React, { useContext, useState } from "react";
+import PopUpQuiz from "./PopUpQuiz.js";
 import data from "../data.js";
 
 import "../styles/HomePage.css";
@@ -13,7 +14,7 @@ function HomePage() {
   return (
     <div>
       <ToolBar />
-      <TinderCardObject currentUser = {userContext.user} users = {data.users} />
+      <TinderCardObject currentUser={userContext.user} users={data.users} />
     </div>
   );
 }
@@ -41,24 +42,21 @@ function ToolBar() {
   );
 }
 
-
 function TinderCardObject(props) {
-
-  console.log(props.users)
+  console.log(props.users);
   const getRandomUser = () => {
     let nextUser = props.users[Math.floor(Math.random() * props.users.length)];
-    while(nextUser.id === props.currentUser.id)
-    {
+    while (nextUser.id === props.currentUser.id) {
       nextUser = props.users[Math.floor(Math.random() * props.users.length)];
     }
     return nextUser;
-  }
-
+  };
 
   const [currentCard, setCurrentCard] = useState(getRandomUser());
 
   const handleNext = () => {
     setCurrentCard(getRandomUser());
+    return <PopUpQuiz />;
   };
 
   const handleReject = () => {
@@ -70,10 +68,7 @@ function TinderCardObject(props) {
     <div className="tindercards-container">
       <div className="card-container">
         <div className="card">
-          <img
-            src={currentCard.image}
-            alt={currentCard.name}
-          />
+          <img src={currentCard.image} alt={currentCard.name} />
           <h3>{currentCard.name}</h3>
         </div>
 
