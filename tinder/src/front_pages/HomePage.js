@@ -73,14 +73,24 @@ function TinderCardObject(props) {
           <div className="card">
             <img src={currentCard.image} alt={currentCard.name} />
             <h3>{currentCard.name}</h3>
-            <h9>{"Age: "+currentCard.age}</h9>
-            <h9>{"Gender: "+currentCard.gender}</h9>
-            <h9>{"Bio: "+currentCard.bio}</h9>
+            <h9>{"Age: " + currentCard.age}</h9>
+            <h9>{"Gender: " + currentCard.gender}</h9>
+            <h9>{"Bio: " + currentCard.bio}</h9>
             <div className="quiz-feedback">{quizFeedback}</div>
-          </div>
-          <div className="button-container">
-            <button onClick={handleReject}>Reject</button>
-            <button onClick={handleNext}>Next</button>
+            <div className="bottom-content">
+              <div className="button-container">
+                <Button onClick={handleReject} variant="outlined" color="error">
+                  Reject
+                </Button>
+                <Button
+                  onClick={handleNext}
+                  variant="contained"
+                  color="success"
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       )}
