@@ -62,6 +62,7 @@ function TinderCardObject(props) {
     setShowQuiz(false); // Hide quiz after submission
     if (isCorrect) {
       props.currentUser.addCorrectAnswer(currentCard.id);
+      props.currentUser.answerQuestionCorrectly(currentQuestion.difficulty);
       setCurrentCard(getRandomUser()); // Move to next profile if correct
     }
   };

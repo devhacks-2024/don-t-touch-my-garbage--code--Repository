@@ -25,7 +25,7 @@ function Profile() {
           <strong>Score:</strong> {userContext.user.currentScore}
         </p>
         <p>
-          <strong>Correct Answers:</strong>
+          <strong>Correct Answers:</strong>{userContext.user.correctAnswers.length}
         </p>
         <ul>
           {userContext.user.correctAnswers.map((person, index) => (
