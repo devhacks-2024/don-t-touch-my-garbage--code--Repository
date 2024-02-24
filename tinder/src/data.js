@@ -207,11 +207,7 @@ class QuestionsObj {
 
   // Method to check if the provided answer is correct
   checkAnswer(userAnswer) {
-    if (this.difficulty === "easy") {
-      return this.options[this.correctAnswer] === userAnswer;
-    } else {
       return this.correctAnswer === userAnswer;
-    }
   }
 }
 
@@ -220,7 +216,7 @@ const questions = [
     1,
     'What is the output of `console.log(1 + "2" + "2");` in JavaScript?',
     "easy",
-    0,
+    "122"
     ['"122"', '"32"', '"14"']
   ),
 
@@ -228,17 +224,17 @@ const questions = [
     2,
     'What is the output of `console.log(1 + "2" + "2");` in JavaScript?',
     "easy",
-    0,
+    "122",
     ['"122"', '"32"', '"14"']
   ),
   new QuestionsObj(
     3,
     "Which of the following is a JavaScript framework?",
     "easy",
-    1,
+    "React",
     ["Python", "React", "Django", "Flask"]
   ),
-  new QuestionsObj(4, "What does HTML stand for?", "easy", 2, [
+  new QuestionsObj(4, "What does HTML stand for?", "easy","Hyper Text Markup Language", [
     "Hyper Trainer Marking Language",
     "Hyper Text Marketing Language",
     "Hyper Text Markup Language",
@@ -286,7 +282,6 @@ const questions = [
 ];
 
 // Checking answer
-console.log(questions[0].checkAnswer('"122"'));
-console.log(questions[7].checkAnswer("push"));
+
 
 export default { users, questions };

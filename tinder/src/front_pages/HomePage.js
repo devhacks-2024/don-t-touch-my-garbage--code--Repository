@@ -55,6 +55,16 @@ function TinderCardObject(props) {
   const [currentCard, setCurrentCard] = useState(getRandomUser());
   const [showQuiz, setShowQuiz] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(null);
+  const [quizFeedback, setQuizFeedback] = useState("");
+
+  const handleQuizSubmission = (isCorrect) => {
+    setQuizFeedback(isCorrect ? "Correct answer!" : "Incorrect answer!");
+    setShowQuiz(false); // Hide quiz after submission
+    if (isCorrect) {
+      props.currentUser.addCorrectAnswer(currentCard.id);
+      setCurrentCard(getRandomUser()); // Move to next profile if correct
+    }
+  };
 
   const handleNext = () => {
     const question = data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
@@ -73,23 +83,25 @@ function TinderCardObject(props) {
   };
 
   return (
-  <div className="tindercards-container">
-    {showQuiz ? (
-      <PopUpQuiz question={currentQuestion} closeQuiz={closeQuiz} />
-    ) : (
-      <div className="card-container">
-        <div className="card">
-          <img src={currentCard.image} alt={currentCard.name} />
-          <h3>{currentCard.name}</h3>
+    <div className="tindercards-container">
+      {showQuiz ? (
+        <PopUpQuiz closeQuiz = {closeQuiz} question={currentQuestion} onQuizSubmit={handleQuizSubmission} />
+      ) : (
+        <div className="card-container">
+          <div className="card">
+            <img src={currentCard.image} alt={currentCard.name} />
+            <h3>{currentCard.name}</h3>
+            {/* New div for displaying quiz feedback */}
+            <div className="quiz-feedback">{quizFeedback}</div>
+          </div>
+          <div className="button-container">
+            <button onClick={handleReject}>Reject</button>
+            <button onClick={handleNext}>Next</button>
+          </div>
         </div>
-        <div className="button-container">
-          <button onClick={handleReject}>Reject</button>
-          <button onClick={handleNext}>Next</button>
-        </div>
-      </div>
-    )}
-  </div>
-);
+      )}
+    </div>
+  );
 }
 
 export default HomePage;

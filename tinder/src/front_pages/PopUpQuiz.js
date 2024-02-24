@@ -24,7 +24,20 @@ const style = {
 
 function PopUpQuiz(props) {
   const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
+  const [answer, setAnswer] = React.useState('');
+  const [isCorrect, setIsCorrect] = React.useState(null);
+
+  const handleAnswerChange = (event) => {
+    setAnswer(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    const isCorrectAnswer = answer === props.question.correctAnswer; // Assuming your question prop includes a 'correctAnswer' field
+    setIsCorrect(isCorrectAnswer);
+    props.onQuizSubmit(isCorrectAnswer);
+    handleClose(); // This might also close the quiz modal after submission
+  };
+
   const handleClose = () => {
     setOpen(false);
     props.closeQuiz(); // Call this to proceed after the quiz is closed
@@ -37,22 +50,25 @@ function PopUpQuiz(props) {
           Question:
         </Typography>
         <Typography id="quiz-question" sx={{ mt: 2 }}>
-          {props.question?.questionText} {/* Display the passed question text */}
+          {props.question?.questionText}
         </Typography>
         <FormControl required sx={{ mt: 3, mb: 3, minWidth: 120 }}>
           <InputLabel htmlFor="answer-input">Answer</InputLabel>
           <Input
             id="answer-input"
             name="answer"
-            endAdornment={
-              <InputAdornment position="end">
-                {/* Optionally include icons or additional elements here */}
-              </InputAdornment>
-            }
+            value={answer}
+            onChange={handleAnswerChange}
+            endAdornment={<InputAdornment position="end"></InputAdornment>}
           />
           <FormHelperText>Required</FormHelperText>
         </FormControl>
-        <Button onClick={handleClose} endIcon={<SendIcon />}>
+        {isCorrect !== null && (
+          <Typography color={isCorrect ? "green" : "red"}>
+            {isCorrect ? "Correct!" : "Incorrect!"}
+          </Typography>
+        )}
+        <Button onClick={handleSubmit} endIcon={<SendIcon />}>
           Submit
         </Button>
       </Box>
