@@ -1,18 +1,19 @@
 import { AppBar, Box, Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import React, { useState } from "react";
-import image1 from "../images/closeup-shot-beautiful-ginger-domestic-kitten-sitting-white-surface.jpg";
-import image2 from "../images/pexels-evg-kowalievska-1170986.jpg";
-import image3 from "../images/closeup-shot-cute-black-kitten-isolated-white.jpg";
+import React, { useContext, useState } from "react";
+import data from "../data.js";
 
 import "../styles/HomePage.css";
+import { UserContextConsumer } from "../userContext.js";
 
 function HomePage() {
+  const userContext = useContext(UserContextConsumer);
+
   return (
     <div>
       <ToolBar />
-      <TinderCardObject />
+      <TinderCardObject currentUser = {userContext.user} users = {data.users} />
     </div>
   );
 }
@@ -40,21 +41,28 @@ function ToolBar() {
   );
 }
 
-function TinderCardObject() {
-  const characters = [
-    { name: "Character 1", url: image1 },
-    { name: "Character 2", url: image2 },
-    { name: "Character 3", url: image3 },
-    // Add more characters as needed
-  ];
-  const [currentCard, setCurrentCard] = useState(0);
+
+function TinderCardObject(props) {
+
+  console.log(props.users)
+  const getRandomUser = () => {
+    let nextUser = props.users[Math.floor(Math.random() * props.users.length)];
+    while(nextUser.id === props.currentUser.id)
+    {
+      nextUser = props.users[Math.floor(Math.random() * props.users.length)];
+    }
+    return nextUser;
+  }
+
+
+  const [currentCard, setCurrentCard] = useState(getRandomUser());
 
   const handleNext = () => {
-    setCurrentCard((prevCard) => (prevCard + 1) % characters.length);
+    setCurrentCard(getRandomUser());
   };
 
   const handleReject = () => {
-    console.log(`Rejected ${characters[currentCard].name}`);
+    console.log(`Rejected ${currentCard.name}`);
     handleNext();
   };
 
@@ -63,10 +71,10 @@ function TinderCardObject() {
       <div className="card-container">
         <div className="card">
           <img
-            src={characters[currentCard].url}
-            alt={characters[currentCard].name}
+            src={currentCard.image}
+            alt={currentCard.name}
           />
-          <h3>{characters[currentCard].name}</h3>
+          <h3>{currentCard.name}</h3>
         </div>
 
         <div className="button-container">
