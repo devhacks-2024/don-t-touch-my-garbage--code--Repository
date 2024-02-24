@@ -1,15 +1,20 @@
 import { AppBar, Box, Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import PopUpQuiz from "./PopUpQuiz.js";
+import { useNavigate } from "react-router-dom";
 import data from "../data.js";
-
 import "../styles/HomePage.css";
 import { UserContextConsumer } from "../userContext.js";
 
 function HomePage() {
+  const navigate = useNavigate();
   const userContext = useContext(UserContextConsumer);
+
+  if (userContext.user == null) {
+    navigate("/");
+  }
 
   return (
     <div>
@@ -67,7 +72,8 @@ function TinderCardObject(props) {
   };
 
   const handleNext = () => {
-    const question = data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
+    const question =
+      data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
     setShowQuiz(true);
     setCurrentQuestion(question); // Assume you've set up state for currentQuestion
   };
@@ -85,7 +91,11 @@ function TinderCardObject(props) {
   return (
     <div className="tindercards-container">
       {showQuiz ? (
-        <PopUpQuiz closeQuiz = {closeQuiz} question={currentQuestion} onQuizSubmit={handleQuizSubmission} />
+        <PopUpQuiz
+          closeQuiz={closeQuiz}
+          question={currentQuestion}
+          onQuizSubmit={handleQuizSubmission}
+        />
       ) : (
         <div className="card-container">
           <div className="card">
