@@ -73,7 +73,9 @@ function TinderCardObject(props) {
           <div className="card">
             <img src={currentCard.image} alt={currentCard.name} />
             <h3>{currentCard.name}</h3>
-            {/* New div for displaying quiz feedback */}
+            <h9>{"Age: "+currentCard.age}</h9>
+            <h9>{"Gender: "+currentCard.gender}</h9>
+            <h9>{"Bio: "+currentCard.bio}</h9>
             <div className="quiz-feedback">{quizFeedback}</div>
           </div>
           <div className="button-container">
