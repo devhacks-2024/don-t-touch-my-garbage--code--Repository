@@ -40,32 +40,8 @@ function LoginPage() {
 
   return (
     <div>
-      <ToolBar />
       <Inputs login={(username, password) => loginUser(username, password)} />
     </div>
-  );
-}
-
-function ToolBar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#5e43f3" }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              flexGrow: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              fontWeight: "bold",
-            }}
-          >
-            Code Crasher
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
   );
 }
 

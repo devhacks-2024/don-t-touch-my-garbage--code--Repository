@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #eaecef;
+  padding: 20px;
+  align-items: center;
+}
+
+.text-center {
+  font-family: monospace;
+  color: rgb(0, 0, 0);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 8%; /* Adjust this value to position the dropdown menu below the toolbar */
+  left: 7%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.dropdown-menu ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  padding: 8px 16px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown-menu a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 600
+}
+
+/* Styling for the header icons */
+.header .MuiSvgIcon-root {
+  margin: 0 10px;
+}
+
+.text-center {
+  text-align: center;
+}

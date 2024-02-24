@@ -13,32 +13,8 @@ function HomePage() {
 
   return (
     <div>
-      <ToolBar />
       <TinderCardObject currentUser={userContext.user} users={data.users} />
     </div>
-  );
-}
-
-function ToolBar() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" sx={{ backgroundColor: "#5e43f3" }}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            sx={{
-              flexGrow: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-              fontWeight: "bold",
-            }}
-          >
-            Code Crasher
-          </Typography>
-        </Toolbar>
-      </AppBar>
-    </Box>
   );
 }
 
@@ -68,7 +44,8 @@ function TinderCardObject(props) {
   };
 
   const handleNext = () => {
-    const question = data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
+    const question =
+      data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
     setShowQuiz(true);
     setCurrentQuestion(question); // Assume you've set up state for currentQuestion
   };
@@ -86,7 +63,11 @@ function TinderCardObject(props) {
   return (
     <div className="tindercards-container">
       {showQuiz ? (
-        <PopUpQuiz closeQuiz = {closeQuiz} question={currentQuestion} onQuizSubmit={handleQuizSubmission} />
+        <PopUpQuiz
+          closeQuiz={closeQuiz}
+          question={currentQuestion}
+          onQuizSubmit={handleQuizSubmission}
+        />
       ) : (
         <div className="card-container">
           <div className="card">
