@@ -139,6 +139,7 @@ const users = [
     "Software engineer with a passion for coding challenges.",
     "password"
   ),
+  new PeopleObj(),
 ];
 
 console.log(users[4]);
