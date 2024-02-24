@@ -1,11 +1,24 @@
 class PeopleObj {
     constructor(id, image, age, gender, bio, password) {
-        this.id = id; // Unique identifier for the user
-        this.image = image; // URL or path to the user's image
-        this.age = age; // User's age
-        this.gender = gender; // User's gender
-        this.bio = bio; // Short biography or description
-        this.password = password;
+        if(arguments.length ==0 )
+        {
+            this.id = 'guest';
+            this.image ='path/to/default/image.jpg'; // Default image path
+            this.age =30; // Age
+            this.gender = 'Non-binary'; // Gender
+            this.bio = 'Just exploring the world of software engineering.'; // Bio
+            this.password = "guest";
+        }
+        else
+        {
+            this.id = id; // Unique identifier for the user
+            this.image = image; // URL or path to the user's image
+            this.age = age; // User's age
+            this.gender = gender; // User's gender
+            this.bio = bio; // Short biography or description
+            this.password = password;
+        }
+        
         this.currentScore = 0; // Initialize score to 0
         this.correctAnswers = []; // List of IDs for people who you answered the questions correctly
         this.matches = []; // List of user IDs representing matches
@@ -31,18 +44,6 @@ class PeopleObj {
             // Further logic could be added to manage match details.
         }
     }
-
-    constructor() {
-        // Hardcode guest account details
-        this.guestUser = new PeopleObj(
-            'guest', // Unique ID for the guest user
-            'path/to/default/image.jpg', // Default image path
-            30, // Age
-            'Non-binary', // Gender
-            'Just exploring the world of software engineering.', // Bio
-            "guest"
-        );
-    }
 }
 
 const users = new Array();
@@ -54,7 +55,8 @@ users.push(user1);
 users.push(user2);
 users.push(user3);
 users.push(user4);
-console.log(users);
+users.push(new PeopleObj);
+console.log(users[4]);
 
 class QuestionsObj {
     constructor(id, questionText, difficulty, correctAnswer, options = null) {
@@ -98,3 +100,5 @@ questions.push(hardQuestion);
 
 console.log(questions[0].checkAnswer('"122"')); 
 console.log(questions[1].checkAnswer('push')); 
+
+export default {PeopleObj, QuestionsObj, users, questions};
