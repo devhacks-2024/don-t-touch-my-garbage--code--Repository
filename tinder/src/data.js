@@ -16,28 +16,53 @@ class PeopleObj {
       this.password = password;
     }
 
-    this.currentScore = 0; // Initialize score to 0
-    this.correctAnswers = []; // List of IDs for people who you answered the questions correctly
+    this.currentScore = 0; // Initialize score to 0 questions 
+    this.correctAnswers = []; // List of IDs for people who you answered thecorrectly
     this.matches = []; // List of user IDs representing matches
+  }
+
+  
+
+  // add the people that you answer the question correctly for
+  addCorrectAnswer(userID) {
+    if (!this.correctAnswers.includes(userID)) {
+      this.correctAnswers.push(userID);
+    }
+  }
+
+  addMatch(userID) {
+    if (!this.matches.includes(userID)) {
+      this.matches.push(userID);
+    }
+  }
+
+  checkMatching(userID){
+    if(this.correctAnswers.includes(userID) && userID.correctAnswers.includes(this.id)){
+      this.addMatch(userID);
+    }
   }
 
   updateScore(points) {
     this.currentScore += points;
   }
 
-  // add the people that you answer the question correctly for
-  addCorrectAnswer(questionID) {
-    if (!this.correctAnswers.includes(questionID)) {
-      this.correctAnswers.push(questionID);
-    }
+  answerQuestionCorrectly(difficulty) {
+    const points = difficulty === "easy" ? 1 : 2; // +1 point for easy questions, +2 for hard
+    this.updateScore(points);
   }
 
-  // Adjusted method to handle match by user ID
-  addMatch(userID) {
-    if (!this.matches.includes(userID)) {
-      this.matches.push(userID);
-      // Matches are simply stored as an array of user IDs.
-      // Further logic could be added to manage match details.
+  attemptMatchWithQuestion(personID, questionId, userAnswer) {
+    const question = questions.find(q => q.id === questionId); // Assuming questions is accessible
+    if (question && question.checkAnswer(userAnswer)) {
+      console.log(`Correct answer for question ${questionId}.`);
+      this.addCorrectAnswer(personID); // Add person's ID on correct answer
+      this.answerQuestionCorrectly(question.difficulty);
+      this.checkMatching(personID);
+    } else if (question) {
+      console.log(`Incorrect answer for question ${questionId}, match attempt with person ${personID} skipped.`);
+      
+    } else {
+      console.log(`Question ${questionId} not found.`);
     }
   }
 }
