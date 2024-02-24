@@ -2,6 +2,7 @@ import { Box, Button } from "@mui/material";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
+import "./LoginPage.css";
 
 function LoginPage() {
   return (
@@ -45,7 +46,7 @@ function Inputs() {
             variant="outlined"
           />
         </div>
-        <Button type="submit" id="login-button">
+        <Button type="submit" className="loginButton">
           Login
         </Button>
       </div>
