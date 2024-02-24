@@ -23,44 +23,40 @@ const style = {
 };
 
 function PopUpQuiz(props) {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    props.closeQuiz(); // Call this to proceed after the quiz is closed
+  };
 
   return (
-    <div>
-      <Button onClick={handleOpen}>Open Question</Button>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <div>
-            <Typography id="quiz-title" variant="h6" component="h2">
-              Question:
-            </Typography>
-            <Typography id="quiz-question" sx={{ mt: 2 }}>
-              any question
-            </Typography>
-            <FormControl required sx={{ mt: 3, mb: 3, minWidth: 120 }}>
-              <InputLabel id="ans-label">Answer</InputLabel>
-              <Input
-                name="username"
-                endAdornment={
-                  <InputAdornment
-                    position="end"
-                    sx={{ marginRight: "8px" }}
-                  ></InputAdornment>
-                }
-              />
-              <FormHelperText>Required</FormHelperText>
-            </FormControl>
-          </div>
-          <div>
-            <Button onClick={handleClose} endIcon={<SendIcon />}>
-              Submit
-            </Button>
-          </div>
-        </Box>
-      </Modal>
-    </div>
+    <Modal open={open} onClose={handleClose}>
+      <Box sx={style}>
+        <Typography id="quiz-title" variant="h6" component="h2">
+          Question:
+        </Typography>
+        <Typography id="quiz-question" sx={{ mt: 2 }}>
+          {props.question?.questionText} {/* Display the passed question text */}
+        </Typography>
+        <FormControl required sx={{ mt: 3, mb: 3, minWidth: 120 }}>
+          <InputLabel htmlFor="answer-input">Answer</InputLabel>
+          <Input
+            id="answer-input"
+            name="answer"
+            endAdornment={
+              <InputAdornment position="end">
+                {/* Optionally include icons or additional elements here */}
+              </InputAdornment>
+            }
+          />
+          <FormHelperText>Required</FormHelperText>
+        </FormControl>
+        <Button onClick={handleClose} endIcon={<SendIcon />}>
+          Submit
+        </Button>
+      </Box>
+    </Modal>
   );
 }
 

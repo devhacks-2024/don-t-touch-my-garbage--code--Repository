@@ -53,32 +53,43 @@ function TinderCardObject(props) {
   };
 
   const [currentCard, setCurrentCard] = useState(getRandomUser());
+  const [showQuiz, setShowQuiz] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(null);
 
   const handleNext = () => {
-    setCurrentCard(getRandomUser());
-    return <PopUpQuiz />;
+    const question = data.questions[Math.floor(Math.random() * data.questions.length)]; // Random question
+    setShowQuiz(true);
+    setCurrentQuestion(question); // Assume you've set up state for currentQuestion
   };
 
   const handleReject = () => {
     console.log(`Rejected ${currentCard.name}`);
-    handleNext();
+    setCurrentCard(getRandomUser()); // Move to the next user without showing the quiz
+  };
+
+  const closeQuiz = () => {
+    setShowQuiz(false);
+    setCurrentCard(getRandomUser()); // Optionally move to the next user after closing the quiz
   };
 
   return (
-    <div className="tindercards-container">
+  <div className="tindercards-container">
+    {showQuiz ? (
+      <PopUpQuiz question={currentQuestion} closeQuiz={closeQuiz} />
+    ) : (
       <div className="card-container">
         <div className="card">
           <img src={currentCard.image} alt={currentCard.name} />
           <h3>{currentCard.name}</h3>
         </div>
-
         <div className="button-container">
           <button onClick={handleReject}>Reject</button>
           <button onClick={handleNext}>Next</button>
         </div>
       </div>
-    </div>
-  );
+    )}
+  </div>
+);
 }
 
 export default HomePage;
